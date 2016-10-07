@@ -1,0 +1,871 @@
+State 0:
+toplevel_expr' -> . toplevel_expr [ # ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On toplevel_expr shift to state 39
+-- On expr shift to state 40
+
+State 1:
+expr -> LPAR . expr RPAR [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 37
+
+State 2:
+expr -> INT . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> INT 
+-- On THEN reduce production expr -> INT 
+-- On RPAR reduce production expr -> INT 
+-- On PLUS reduce production expr -> INT 
+-- On OR reduce production expr -> INT 
+-- On NOT reduce production expr -> INT 
+-- On NEQ reduce production expr -> INT 
+-- On MULT reduce production expr -> INT 
+-- On MINUS reduce production expr -> INT 
+-- On LT reduce production expr -> INT 
+-- On LE reduce production expr -> INT 
+-- On GT reduce production expr -> INT 
+-- On GE reduce production expr -> INT 
+-- On EQ reduce production expr -> INT 
+-- On EOF reduce production expr -> INT 
+-- On ELSE reduce production expr -> INT 
+-- On DIV reduce production expr -> INT 
+-- On AND reduce production expr -> INT 
+
+State 3:
+expr -> IF . expr THEN expr ELSE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 6
+
+State 4:
+expr -> EOF . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> EOF 
+-- On THEN reduce production expr -> EOF 
+-- On RPAR reduce production expr -> EOF 
+-- On PLUS reduce production expr -> EOF 
+-- On OR reduce production expr -> EOF 
+-- On NOT reduce production expr -> EOF 
+-- On NEQ reduce production expr -> EOF 
+-- On MULT reduce production expr -> EOF 
+-- On MINUS reduce production expr -> EOF 
+-- On LT reduce production expr -> EOF 
+-- On LE reduce production expr -> EOF 
+-- On GT reduce production expr -> EOF 
+-- On GE reduce production expr -> EOF 
+-- On EQ reduce production expr -> EOF 
+-- On EOF reduce production expr -> EOF 
+-- On ELSE reduce production expr -> EOF 
+-- On DIV reduce production expr -> EOF 
+-- On AND reduce production expr -> EOF 
+
+State 5:
+expr -> BOOL . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> BOOL 
+-- On THEN reduce production expr -> BOOL 
+-- On RPAR reduce production expr -> BOOL 
+-- On PLUS reduce production expr -> BOOL 
+-- On OR reduce production expr -> BOOL 
+-- On NOT reduce production expr -> BOOL 
+-- On NEQ reduce production expr -> BOOL 
+-- On MULT reduce production expr -> BOOL 
+-- On MINUS reduce production expr -> BOOL 
+-- On LT reduce production expr -> BOOL 
+-- On LE reduce production expr -> BOOL 
+-- On GT reduce production expr -> BOOL 
+-- On GE reduce production expr -> BOOL 
+-- On EQ reduce production expr -> BOOL 
+-- On EOF reduce production expr -> BOOL 
+-- On ELSE reduce production expr -> BOOL 
+-- On DIV reduce production expr -> BOOL 
+-- On AND reduce production expr -> BOOL 
+
+State 6:
+expr -> expr . PLUS expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . NOT [ UMINUS THEN PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> IF expr . THEN expr ELSE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS shift to state 7
+-- On THEN shift to state 8
+-- On PLUS shift to state 10
+-- On OR shift to state 12
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On MULT shift to state 27
+-- On MINUS shift to state 33
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On DIV shift to state 31
+-- On AND shift to state 29
+
+State 7:
+expr -> expr UMINUS . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> expr UMINUS 
+-- On THEN reduce production expr -> expr UMINUS 
+-- On RPAR reduce production expr -> expr UMINUS 
+-- On PLUS reduce production expr -> expr UMINUS 
+-- On OR reduce production expr -> expr UMINUS 
+-- On NOT reduce production expr -> expr UMINUS 
+-- On NEQ reduce production expr -> expr UMINUS 
+-- On MULT reduce production expr -> expr UMINUS 
+-- On MINUS reduce production expr -> expr UMINUS 
+-- On LT reduce production expr -> expr UMINUS 
+-- On LE reduce production expr -> expr UMINUS 
+-- On GT reduce production expr -> expr UMINUS 
+-- On GE reduce production expr -> expr UMINUS 
+-- On EQ reduce production expr -> expr UMINUS 
+-- On EOF reduce production expr -> expr UMINUS 
+-- On ELSE reduce production expr -> expr UMINUS 
+-- On DIV reduce production expr -> expr UMINUS 
+-- On AND reduce production expr -> expr UMINUS 
+
+State 8:
+expr -> IF expr THEN . expr ELSE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 9
+
+State 9:
+expr -> expr . PLUS expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ ELSE DIV AND ]
+expr -> IF expr THEN expr . ELSE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS shift to state 7
+-- On PLUS shift to state 10
+-- On OR shift to state 12
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On MULT shift to state 27
+-- On MINUS shift to state 33
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On ELSE shift to state 35
+-- On DIV shift to state 31
+-- On AND shift to state 29
+
+State 10:
+expr -> expr PLUS . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 11
+
+State 11:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr PLUS expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS shift to state 7
+-- On OR shift to state 12
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On MULT shift to state 27
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On DIV shift to state 31
+-- On AND shift to state 29
+-- On THEN reduce production expr -> expr PLUS expr 
+-- On RPAR reduce production expr -> expr PLUS expr 
+-- On PLUS reduce production expr -> expr PLUS expr 
+-- On MINUS reduce production expr -> expr PLUS expr 
+-- On EOF reduce production expr -> expr PLUS expr 
+-- On ELSE reduce production expr -> expr PLUS expr 
+
+State 12:
+expr -> expr OR . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 13
+
+State 13:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr OR expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS shift to state 7
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On THEN reduce production expr -> expr OR expr 
+-- On RPAR reduce production expr -> expr OR expr 
+-- On PLUS reduce production expr -> expr OR expr 
+-- On OR reduce production expr -> expr OR expr 
+-- On MULT reduce production expr -> expr OR expr 
+-- On MINUS reduce production expr -> expr OR expr 
+-- On EOF reduce production expr -> expr OR expr 
+-- On ELSE reduce production expr -> expr OR expr 
+-- On DIV reduce production expr -> expr OR expr 
+-- On AND reduce production expr -> expr OR expr 
+
+State 14:
+expr -> expr NOT . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> expr NOT 
+-- On THEN reduce production expr -> expr NOT 
+-- On RPAR reduce production expr -> expr NOT 
+-- On PLUS reduce production expr -> expr NOT 
+-- On OR reduce production expr -> expr NOT 
+-- On NOT reduce production expr -> expr NOT 
+-- On NEQ reduce production expr -> expr NOT 
+-- On MULT reduce production expr -> expr NOT 
+-- On MINUS reduce production expr -> expr NOT 
+-- On LT reduce production expr -> expr NOT 
+-- On LE reduce production expr -> expr NOT 
+-- On GT reduce production expr -> expr NOT 
+-- On GE reduce production expr -> expr NOT 
+-- On EQ reduce production expr -> expr NOT 
+-- On EOF reduce production expr -> expr NOT 
+-- On ELSE reduce production expr -> expr NOT 
+-- On DIV reduce production expr -> expr NOT 
+-- On AND reduce production expr -> expr NOT 
+
+State 15:
+expr -> expr NEQ . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 16
+
+State 16:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr NEQ expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> expr NEQ expr 
+-- On THEN reduce production expr -> expr NEQ expr 
+-- On RPAR reduce production expr -> expr NEQ expr 
+-- On PLUS reduce production expr -> expr NEQ expr 
+-- On OR reduce production expr -> expr NEQ expr 
+-- On NOT reduce production expr -> expr NEQ expr 
+-- On NEQ reduce production expr -> expr NEQ expr 
+-- On MULT reduce production expr -> expr NEQ expr 
+-- On MINUS reduce production expr -> expr NEQ expr 
+-- On LT reduce production expr -> expr NEQ expr 
+-- On LE reduce production expr -> expr NEQ expr 
+-- On GT reduce production expr -> expr NEQ expr 
+-- On GE reduce production expr -> expr NEQ expr 
+-- On EQ reduce production expr -> expr NEQ expr 
+-- On EOF reduce production expr -> expr NEQ expr 
+-- On ELSE reduce production expr -> expr NEQ expr 
+-- On DIV reduce production expr -> expr NEQ expr 
+-- On AND reduce production expr -> expr NEQ expr 
+
+State 17:
+expr -> expr LT . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 18
+
+State 18:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr LT expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> expr LT expr 
+-- On THEN reduce production expr -> expr LT expr 
+-- On RPAR reduce production expr -> expr LT expr 
+-- On PLUS reduce production expr -> expr LT expr 
+-- On OR reduce production expr -> expr LT expr 
+-- On NOT reduce production expr -> expr LT expr 
+-- On NEQ reduce production expr -> expr LT expr 
+-- On MULT reduce production expr -> expr LT expr 
+-- On MINUS reduce production expr -> expr LT expr 
+-- On LT reduce production expr -> expr LT expr 
+-- On LE reduce production expr -> expr LT expr 
+-- On GT reduce production expr -> expr LT expr 
+-- On GE reduce production expr -> expr LT expr 
+-- On EQ reduce production expr -> expr LT expr 
+-- On EOF reduce production expr -> expr LT expr 
+-- On ELSE reduce production expr -> expr LT expr 
+-- On DIV reduce production expr -> expr LT expr 
+-- On AND reduce production expr -> expr LT expr 
+
+State 19:
+expr -> expr LE . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 20
+
+State 20:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr LE expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> expr LE expr 
+-- On THEN reduce production expr -> expr LE expr 
+-- On RPAR reduce production expr -> expr LE expr 
+-- On PLUS reduce production expr -> expr LE expr 
+-- On OR reduce production expr -> expr LE expr 
+-- On NOT reduce production expr -> expr LE expr 
+-- On NEQ reduce production expr -> expr LE expr 
+-- On MULT reduce production expr -> expr LE expr 
+-- On MINUS reduce production expr -> expr LE expr 
+-- On LT reduce production expr -> expr LE expr 
+-- On LE reduce production expr -> expr LE expr 
+-- On GT reduce production expr -> expr LE expr 
+-- On GE reduce production expr -> expr LE expr 
+-- On EQ reduce production expr -> expr LE expr 
+-- On EOF reduce production expr -> expr LE expr 
+-- On ELSE reduce production expr -> expr LE expr 
+-- On DIV reduce production expr -> expr LE expr 
+-- On AND reduce production expr -> expr LE expr 
+
+State 21:
+expr -> expr GT . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 22
+
+State 22:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr GT expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> expr GT expr 
+-- On THEN reduce production expr -> expr GT expr 
+-- On RPAR reduce production expr -> expr GT expr 
+-- On PLUS reduce production expr -> expr GT expr 
+-- On OR reduce production expr -> expr GT expr 
+-- On NOT reduce production expr -> expr GT expr 
+-- On NEQ reduce production expr -> expr GT expr 
+-- On MULT reduce production expr -> expr GT expr 
+-- On MINUS reduce production expr -> expr GT expr 
+-- On LT reduce production expr -> expr GT expr 
+-- On LE reduce production expr -> expr GT expr 
+-- On GT reduce production expr -> expr GT expr 
+-- On GE reduce production expr -> expr GT expr 
+-- On EQ reduce production expr -> expr GT expr 
+-- On EOF reduce production expr -> expr GT expr 
+-- On ELSE reduce production expr -> expr GT expr 
+-- On DIV reduce production expr -> expr GT expr 
+-- On AND reduce production expr -> expr GT expr 
+
+State 23:
+expr -> expr GE . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 24
+
+State 24:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr GE expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> expr GE expr 
+-- On THEN reduce production expr -> expr GE expr 
+-- On RPAR reduce production expr -> expr GE expr 
+-- On PLUS reduce production expr -> expr GE expr 
+-- On OR reduce production expr -> expr GE expr 
+-- On NOT reduce production expr -> expr GE expr 
+-- On NEQ reduce production expr -> expr GE expr 
+-- On MULT reduce production expr -> expr GE expr 
+-- On MINUS reduce production expr -> expr GE expr 
+-- On LT reduce production expr -> expr GE expr 
+-- On LE reduce production expr -> expr GE expr 
+-- On GT reduce production expr -> expr GE expr 
+-- On GE reduce production expr -> expr GE expr 
+-- On EQ reduce production expr -> expr GE expr 
+-- On EOF reduce production expr -> expr GE expr 
+-- On ELSE reduce production expr -> expr GE expr 
+-- On DIV reduce production expr -> expr GE expr 
+-- On AND reduce production expr -> expr GE expr 
+
+State 25:
+expr -> expr EQ . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 26
+
+State 26:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr EQ expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> expr EQ expr 
+-- On THEN reduce production expr -> expr EQ expr 
+-- On RPAR reduce production expr -> expr EQ expr 
+-- On PLUS reduce production expr -> expr EQ expr 
+-- On OR reduce production expr -> expr EQ expr 
+-- On NOT reduce production expr -> expr EQ expr 
+-- On NEQ reduce production expr -> expr EQ expr 
+-- On MULT reduce production expr -> expr EQ expr 
+-- On MINUS reduce production expr -> expr EQ expr 
+-- On LT reduce production expr -> expr EQ expr 
+-- On LE reduce production expr -> expr EQ expr 
+-- On GT reduce production expr -> expr EQ expr 
+-- On GE reduce production expr -> expr EQ expr 
+-- On EQ reduce production expr -> expr EQ expr 
+-- On EOF reduce production expr -> expr EQ expr 
+-- On ELSE reduce production expr -> expr EQ expr 
+-- On DIV reduce production expr -> expr EQ expr 
+-- On AND reduce production expr -> expr EQ expr 
+
+State 27:
+expr -> expr MULT . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 28
+
+State 28:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr MULT expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS shift to state 7
+-- On OR shift to state 12
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On AND shift to state 29
+-- On THEN reduce production expr -> expr MULT expr 
+-- On RPAR reduce production expr -> expr MULT expr 
+-- On PLUS reduce production expr -> expr MULT expr 
+-- On MULT reduce production expr -> expr MULT expr 
+-- On MINUS reduce production expr -> expr MULT expr 
+-- On EOF reduce production expr -> expr MULT expr 
+-- On ELSE reduce production expr -> expr MULT expr 
+-- On DIV reduce production expr -> expr MULT expr 
+
+State 29:
+expr -> expr AND . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 30
+
+State 30:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr AND expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS shift to state 7
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On THEN reduce production expr -> expr AND expr 
+-- On RPAR reduce production expr -> expr AND expr 
+-- On PLUS reduce production expr -> expr AND expr 
+-- On OR reduce production expr -> expr AND expr 
+-- On MULT reduce production expr -> expr AND expr 
+-- On MINUS reduce production expr -> expr AND expr 
+-- On EOF reduce production expr -> expr AND expr 
+-- On ELSE reduce production expr -> expr AND expr 
+-- On DIV reduce production expr -> expr AND expr 
+-- On AND reduce production expr -> expr AND expr 
+
+State 31:
+expr -> expr DIV . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 32
+
+State 32:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr DIV expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS shift to state 7
+-- On OR shift to state 12
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On AND shift to state 29
+-- On THEN reduce production expr -> expr DIV expr 
+-- On RPAR reduce production expr -> expr DIV expr 
+-- On PLUS reduce production expr -> expr DIV expr 
+-- On MULT reduce production expr -> expr DIV expr 
+-- On MINUS reduce production expr -> expr DIV expr 
+-- On EOF reduce production expr -> expr DIV expr 
+-- On ELSE reduce production expr -> expr DIV expr 
+-- On DIV reduce production expr -> expr DIV expr 
+
+State 33:
+expr -> expr MINUS . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 34
+
+State 34:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr MINUS expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS shift to state 7
+-- On OR shift to state 12
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On MULT shift to state 27
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On DIV shift to state 31
+-- On AND shift to state 29
+-- On THEN reduce production expr -> expr MINUS expr 
+-- On RPAR reduce production expr -> expr MINUS expr 
+-- On PLUS reduce production expr -> expr MINUS expr 
+-- On MINUS reduce production expr -> expr MINUS expr 
+-- On EOF reduce production expr -> expr MINUS expr 
+-- On ELSE reduce production expr -> expr MINUS expr 
+
+State 35:
+expr -> IF expr THEN expr ELSE . expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On LPAR shift to state 1
+-- On INT shift to state 2
+-- On IF shift to state 3
+-- On EOF shift to state 4
+-- On BOOL shift to state 5
+-- On expr shift to state 36
+
+State 36:
+expr -> expr . PLUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MINUS expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . MULT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . DIV expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . AND expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . OR expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GT expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . LE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . GE expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NEQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . EQ expr [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . UMINUS [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . NOT [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> IF expr THEN expr ELSE expr . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> IF expr THEN expr ELSE expr 
+-- On THEN reduce production expr -> IF expr THEN expr ELSE expr 
+-- On RPAR reduce production expr -> IF expr THEN expr ELSE expr 
+-- On PLUS reduce production expr -> IF expr THEN expr ELSE expr 
+-- On OR reduce production expr -> IF expr THEN expr ELSE expr 
+-- On NOT reduce production expr -> IF expr THEN expr ELSE expr 
+-- On NEQ reduce production expr -> IF expr THEN expr ELSE expr 
+-- On MULT reduce production expr -> IF expr THEN expr ELSE expr 
+-- On MINUS reduce production expr -> IF expr THEN expr ELSE expr 
+-- On LT reduce production expr -> IF expr THEN expr ELSE expr 
+-- On LE reduce production expr -> IF expr THEN expr ELSE expr 
+-- On GT reduce production expr -> IF expr THEN expr ELSE expr 
+-- On GE reduce production expr -> IF expr THEN expr ELSE expr 
+-- On EQ reduce production expr -> IF expr THEN expr ELSE expr 
+-- On EOF reduce production expr -> IF expr THEN expr ELSE expr 
+-- On ELSE reduce production expr -> IF expr THEN expr ELSE expr 
+-- On DIV reduce production expr -> IF expr THEN expr ELSE expr 
+-- On AND reduce production expr -> IF expr THEN expr ELSE expr 
+
+State 37:
+expr -> LPAR expr . RPAR [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+expr -> expr . PLUS expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . MINUS expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . MULT expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . DIV expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . AND expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . OR expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . LT expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . GT expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . LE expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . GE expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . NEQ expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . EQ expr [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . UMINUS [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+expr -> expr . NOT [ UMINUS RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ DIV AND ]
+-- On UMINUS shift to state 7
+-- On RPAR shift to state 38
+-- On PLUS shift to state 10
+-- On OR shift to state 12
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On MULT shift to state 27
+-- On MINUS shift to state 33
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On DIV shift to state 31
+-- On AND shift to state 29
+
+State 38:
+expr -> LPAR expr RPAR . [ UMINUS THEN RPAR PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF ELSE DIV AND ]
+-- On UMINUS reduce production expr -> LPAR expr RPAR 
+-- On THEN reduce production expr -> LPAR expr RPAR 
+-- On RPAR reduce production expr -> LPAR expr RPAR 
+-- On PLUS reduce production expr -> LPAR expr RPAR 
+-- On OR reduce production expr -> LPAR expr RPAR 
+-- On NOT reduce production expr -> LPAR expr RPAR 
+-- On NEQ reduce production expr -> LPAR expr RPAR 
+-- On MULT reduce production expr -> LPAR expr RPAR 
+-- On MINUS reduce production expr -> LPAR expr RPAR 
+-- On LT reduce production expr -> LPAR expr RPAR 
+-- On LE reduce production expr -> LPAR expr RPAR 
+-- On GT reduce production expr -> LPAR expr RPAR 
+-- On GE reduce production expr -> LPAR expr RPAR 
+-- On EQ reduce production expr -> LPAR expr RPAR 
+-- On EOF reduce production expr -> LPAR expr RPAR 
+-- On ELSE reduce production expr -> LPAR expr RPAR 
+-- On DIV reduce production expr -> LPAR expr RPAR 
+-- On AND reduce production expr -> LPAR expr RPAR 
+
+State 39:
+toplevel_expr' -> toplevel_expr . [ # ]
+-- On # accept toplevel_expr
+
+State 40:
+expr -> expr . PLUS expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . MINUS expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . MULT expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . DIV expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . AND expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . OR expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . LT expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . GT expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . LE expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . GE expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . NEQ expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . EQ expr [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . UMINUS [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+expr -> expr . NOT [ UMINUS PLUS OR NOT NEQ MULT MINUS LT LE GT GE EQ EOF DIV AND ]
+toplevel_expr -> expr . EOF [ # ]
+-- On UMINUS shift to state 7
+-- On PLUS shift to state 10
+-- On OR shift to state 12
+-- On NOT shift to state 14
+-- On NEQ shift to state 15
+-- On MULT shift to state 27
+-- On MINUS shift to state 33
+-- On LT shift to state 17
+-- On LE shift to state 19
+-- On GT shift to state 21
+-- On GE shift to state 23
+-- On EQ shift to state 25
+-- On EOF shift to state 41
+-- On DIV shift to state 31
+-- On AND shift to state 29
+
+State 41:
+toplevel_expr -> expr EOF . [ # ]
+-- On # reduce production toplevel_expr -> expr EOF 
+
