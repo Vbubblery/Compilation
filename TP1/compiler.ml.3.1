@@ -1,0 +1,40 @@
+open Ast
+(*Delete the ".3.1" of the name and back up another compiler to test the program*)
+let rec compile_expr (e : Ast.expr) : unit = 
+  match e with
+    |Eint n -> Printf.printf "li $a0 %d\n" n
+    |Ebinop (op, e1, e2) ->
+(* 
+question:
+this is not working and dont know the reason:
+
+        let r1=compile_expr(e1) in
+          let r2=compile_expr(e2) in
+*)
+          match op with
+             (*changed the r1 to compile_expr(e1) will be working and the same as r2*)
+            (*The operation of the expression*)
+            |Plus-> compile_expr(e1);
+                Printf.printf"sub $sp,$sp,4 \n sw $a0, 0($sp)\n";
+                compile_expr(e2);
+                Printf.printf"lw  $a1, 0($sp) \n add $sp, $sp, 4 \n add $a0, $a1, $a0 \n";
+
+            |Minus-> compile_expr(e1);
+                Printf.printf"sub $sp,$sp,4 \n sw $a0, 0($sp)\n";
+                compile_expr(e2);
+                Printf.printf"lw  $a1, 0($sp) \n add $sp, $sp, 4 \n sub $a0, $a1, $a0 \n";
+
+            |Mult-> compile_expr(e1);
+                Printf.printf" sub $sp, $sp, 4\n sw  $a0, 0($sp)\n";
+                compile_expr(e2);
+                Printf.printf" lw  $a1, 0($sp)\n add $sp, $sp, 4 \n mul $a0, $a1, $a0 \n";
+
+            |Div-> compile_expr(e1);
+                Printf.printf" sub $sp, $sp, 4\n sw  $a0, 0($sp)\n";
+                compile_expr(e2);
+;;
+
+let compile_toplevel_expr (e: Ast.expr) : unit =
+  Printf.printf ".text\nmain:\n";
+  compile_expr e;
+  Printf.printf "  li $v0, 1\n  syscall\n  li $v0, 10\n  syscall \n"

@@ -1,0 +1,56 @@
+open Ast
+(*Delete the ".3.2" of the name and back up another compiler to test the program*)
+(*define an argument that can generate the number of $a(num) automaticly *)
+(*
+Ebinop(Plus, Eint 1, Ebinop(Mult, Ebinop(Minus, Eint 2, Eint 3), Eint 4))
+				a0								a1		a2			a3
+So, when we match a number, we let the ai = this value.
+*)
+let numberOfRegistre = ref 0 ;;
+let rec compile_expr (e : Ast.expr) : unit = 
+  match e with
+    |Eint n -> 
+    	Printf.printf "li $a%i %d\n" !numberOfRegistre n;
+    	numberOfRegistre := !numberOfRegistre +1;
+    	(* limit the quantity of the registre which we can
+    	use. *)
+    	if !numberOfRegistre > 3 then
+    		failwith "ops! Something goes wrong, plz try again!"
+    |Ebinop (op, e1, e2) ->
+    	match op with
+    		|Plus ->
+				compile_expr e1;
+				compile_expr e2;
+				(*
+				at the moment, the point number of the registre
+				point into the next number of registre.
+				so we need the last and the last of the last number
+				of registre. thats why we sub 2 and 1 to get the number
+				of registre.
+				*)
+				Printf.printf "add $a%i,$a%i,$a%i\n" (!numberOfRegistre-2)(!numberOfRegistre-2) (!numberOfRegistre-1);
+				(*Sub the number of the Registre
+				because the 2 registres aready add to 
+				1 registre, so one registre is free at the moment*)
+    			numberOfRegistre := !numberOfRegistre - 1;
+    		|Minus ->
+    			compile_expr e1;
+				compile_expr e2;
+				Printf.printf "sub $a%i,$a%i,$a%i\n" (!numberOfRegistre-2)(!numberOfRegistre-2) (!numberOfRegistre-1);
+				numberOfRegistre := !numberOfRegistre - 1;
+    		|Mult ->
+    			compile_expr e1;
+				compile_expr e2;
+				Printf.printf "mul $a%i,$a%i,$a%i\n" (!numberOfRegistre-2)(!numberOfRegistre-2) (!numberOfRegistre-1);
+				numberOfRegistre := !numberOfRegistre - 1;
+    		|Div ->
+    			compile_expr e1;
+				compile_expr e2;
+				Printf.printf "div $a%i,$a%i,$a%i\n" (!numberOfRegistre-2)(!numberOfRegistre-2) (!numberOfRegistre-1);
+				numberOfRegistre := !numberOfRegistre - 1;
+;;
+
+let compile_toplevel_expr (e: Ast.expr) : unit =
+  Printf.printf ".text\nmain:\n";
+  compile_expr e;
+  Printf.printf "  li $v0, 1\n  syscall\n  li $v0, 10\n  syscall\n"
